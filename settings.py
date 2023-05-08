@@ -15,7 +15,5 @@ CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 USER_AGENT = os.environ.get("USER_AGENT")
 
 reddit = praw.Reddit(
-    client_id = CLIENT_ID,
-    client_secret = CLIENT_SECRET,
-    user_agent = USER_AGENT
+    client_id=CLIENT_ID, client_secret=CLIENT_SECRET, user_agent=USER_AGENT
 )

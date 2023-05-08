@@ -1,5 +1,4 @@
-class INSERT_QUERY():
-
+class INSERT_QUERY:
     @staticmethod
     def comment() -> str:
         return """

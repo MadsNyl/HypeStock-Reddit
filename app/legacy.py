@@ -2,9 +2,10 @@ import requests
 from util import remove_emojies
 from classes import Comment
 
+
 def get_legacy_comments(subreddit: str, start: str, end: str, limit: int) -> list[dict]:
     url = f"https://api.pushshift.io/reddit/search/comment/?subreddit={subreddit}&size={limit}&after={start}d&before={end}d"
-    headers = {'Accept': 'application/json'}
+    headers = {"Accept": "application/json"}
 
     try:
         res = requests.get(url, headers=headers)
@@ -13,6 +14,7 @@ def get_legacy_comments(subreddit: str, start: str, end: str, limit: int) -> lis
     except Exception as e:
         print(f"Extraction of legacy comments error: {e}")
         return []
+
 
 def get_processed_data(comment: dict, tickers: list) -> Comment:
     body = remove_emojies(comment["body"])
@@ -27,5 +29,5 @@ def get_processed_data(comment: dict, tickers: list) -> Comment:
                 comment["utc_datetime_str"],
                 comment["score"],
                 body,
-                comment["author"]
+                comment["author"],
             )

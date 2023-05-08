@@ -1,4 +1,4 @@
-class Comment():
+class Comment:
     permalink: str
     symbol: str
     post_url: str
@@ -8,7 +8,17 @@ class Comment():
     body: str
     author: str
 
-    def __init__(self, permalink: str, symbol: str, post_url: str, subreddit: str, created_date: str, likes: int, body: str, author: str) -> None:
+    def __init__(
+        self,
+        permalink: str,
+        symbol: str,
+        post_url: str,
+        subreddit: str,
+        created_date: str,
+        likes: int,
+        body: str,
+        author: str,
+    ) -> None:
         self.permalink = permalink
         self.symbol = symbol
         self.post_url = post_url

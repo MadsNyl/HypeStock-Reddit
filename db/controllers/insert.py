@@ -2,12 +2,12 @@ from db import pool, db
 from db.models import INSERT_QUERY
 from classes import Comment
 
-class INSERT():
-    
+
+class INSERT:
     @staticmethod
     def comment(comment: Comment) -> None:
         """
-            Inserts a comment from Reddit.
+        Inserts a comment from Reddit.
         """
 
         try:
@@ -21,8 +21,8 @@ class INSERT():
                     comment.created_date,
                     comment.likes,
                     comment.body,
-                    comment.author
-                )
+                    comment.author,
+                ),
             )
 
             db.commit()
