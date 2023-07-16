@@ -1,0 +1,16 @@
+CREATE TABLE reddit_comment (
+    id varchar(32),
+    title text,
+    body text,
+    url varchar(255),
+    author varchar(255),
+    submission varchar(20),
+    subreddit varchar(255),
+    parent_id varchar(32),
+    created_date datetime DEFAULT NOW(),
+    collected_date datetime DEFAULT NOW(),
+    PRIMARY KEY (id),
+    FOREIGN KEY (submission) REFERENCES submission (id),
+    FOREIGN KEY (subreddit) REFERENCES subreddit (name),
+    FOREIGN KEY (parent_id) REFERENCES reddit_comment (id)
+);

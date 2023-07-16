@@ -1,18 +1,26 @@
 import sys
-from app import Reddit
+from app import RedditAPI
 from db import GET
 from util import timer
+from settings import USER_AGENT
 
 
 def main():
-    subs = GET.subreddits()
-    limit = 5
+    headers = {
+        "User-Agent": USER_AGENT
+    }
+    subreddit = "wallstreetbets"
 
-    if len(sys.argv) > 1:
-        limit = int(sys.argv[1])
+    api = RedditAPI()
 
-    r = Reddit(subs, limit)
-    r.run()
+    response = api.hot(subreddit, headers=headers)
+    data = response.json()["data"]
+    submissions = data["children"]
+
+    for sub in submissions:
+        print(sub)
+        print()
+
 
 
 if __name__ == "__main__":

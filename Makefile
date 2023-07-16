@@ -1,8 +1,8 @@
 install:
 	pip install -r requirements.txt
 
-legacy:
-	python legacy.py ${args}
+pushshift:
+	python pushshift.py ${args}
 
 run:
 	python main.py ${args}

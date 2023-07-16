@@ -1,0 +1,13 @@
+CREATE TABLE submission (
+    id varchar(20),
+    subreddit,
+    title text,
+    body text,
+    score int,
+    author varchar(255),
+    url varchar(255),
+    created_date datetime DEFAULT NOW(),
+    collected_date datetime DEFAULT NOW(),
+    PRIMARY KEY (id),
+    FOREIGN KEY (subreddit) REFERENCES subreddit (name)
+);
