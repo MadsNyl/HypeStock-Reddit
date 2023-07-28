@@ -3,12 +3,13 @@ from datetime import datetime
 
 
 @dataclass
-class Comment:
+class Submission():
     id: str
-    body: str
-    url: str
-    author: str
-    submission: str
     subreddit: str
+    title: str
+    body: str
+    score: int
+    author: str
+    url: str
     created_date: datetime
     collected_date: datetime = None

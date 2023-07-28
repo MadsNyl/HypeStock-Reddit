@@ -1,0 +1,6 @@
+CREATE TABLE reddit_ticker (
+    ticker varchar (10),
+    comment varchar (32),
+    FOREIGN KEY (ticker) REFERENCES ticker (symbol) ON DELETE CASCADE,
+    FOREIGN KEY (comment) REFERENCES reddit_comment (id) ON DELETE CASCADE
+);

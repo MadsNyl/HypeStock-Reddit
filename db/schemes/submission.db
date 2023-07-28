@@ -1,6 +1,6 @@
 CREATE TABLE submission (
     id varchar(20),
-    subreddit,
+    subreddit varchar(255),
     title text,
     body text,
     score int,
@@ -9,5 +9,5 @@ CREATE TABLE submission (
     created_date datetime DEFAULT NOW(),
     collected_date datetime DEFAULT NOW(),
     PRIMARY KEY (id),
-    FOREIGN KEY (subreddit) REFERENCES subreddit (name)
+    FOREIGN KEY (subreddit) REFERENCES subreddit (name) ON DELETE CASCADE
 );
