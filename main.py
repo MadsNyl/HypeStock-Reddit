@@ -1,7 +1,7 @@
 from app import RedditAPI, RedditAPIAsync, RedditParser
 from db import GET, UPDATE, INSERT
 from util import timer, load_config_settings
-from classes import Submission, Comment
+from classes import Submission, Comment, ProxyList
 from settings import USER_AGENT
 
 
@@ -17,13 +17,16 @@ def scrape(cap: int, subreddit: str):
     headers = {
         "User-Agent": USER_AGENT
     }
+    proxies = {
+        "http": f"http://{ProxyList().proxy}"
+    }
 
-    subreddit_response = api.subreddit(subreddit, headers=headers)
+    subreddit_response = api.subreddit(subreddit, headers=headers, proxies=proxies)
     subreddit_data = parser.get_data(subreddit_response.json())
     subscribers = parser.subscribers(subreddit_data)
     UPDATE.subscribers(subscribers, subreddit)
 
-    submissions_response = api.hot(subreddit, headers=headers)
+    submissions_response = api.hot(subreddit, headers=headers, proxies=proxies)
     data = parser.get_data(submissions_response.json())
     submissions = parser.children(data)
 
@@ -49,7 +52,10 @@ def scrape(cap: int, subreddit: str):
             sub_inserted = True
             continue
 
-        comments_response = api.submission_comments(submission_id, headers=headers).json()
+        proxies = {
+            "http": f"http://{ProxyList().proxy}"
+        }
+        comments_response = api.submission_comments(submission_id, headers=headers, proxies=proxies).json()
         comments_response.pop(0)
         comments_data = parser.get_data(comments_response[0])
         comments = parser.children(comments_data)
